@@ -6,8 +6,52 @@
     <title>cadastro de pessoas</title>
 </head>
 <body>
+    <script>
+        class Pessoa{
+            #nome
+            constructor(nome){
+                this.#nome = nome;
+            }
+            set setNome(nome){
+                this.#nome = nome;
+            }
+            get getNome(){
+                return this.#nome;
+            }
+            imprimir(){
+                document.getElementById("painelDeResposta").innerHTML += "Nome: " + this.#nome + "</br>";
+            }
+        }
+        class Cadastro{
+            #pessoas
+            construtor(){
+                this.#pessoas = [];
+            }
+            cadastrar(){
+                var opcao;
+                do{
+                    var nome = prompt("informe o nome da pessoa: ", "nome");
+                    var pessoa = new Pessoa(nome);
+                    this.#pessoas.push(pessoa);
+                    opcao= confirm("deseja cadastrar outra pessoa?");
+                } while(opcao == true);
+            }
+            imprimir(){
+                this.#pessoas.forEach(pessoa => pessoa.imprimir());
+            }
+        }
+        class Main{
+            main(){ 
+                var cadastro = new Cadastro();
+                cadastro.cadastrar();
+                cadastro.imprimir();
+            }
+        }
+
+        var principal = new Main();
+    </script>
     <h1>cadastro de pessoas</h1>
-    <button>iniciar</button>
+    <button onclick="principal.main()">iniciar</button>
     <div id ="painelDeResposta"></div>
 </body>
 </html>
